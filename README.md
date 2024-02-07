@@ -1,88 +1,33 @@
-# Language Guided Local Infiltration for Interactive Image Retrieval - Accepted at CVPR Workshop 2023
-- The paper can be accessed at [CVPR2023W/IMW](https://openaccess.thecvf.com/content/CVPR2023W/IMW/papers/Huang_Language_Guided_Local_Infiltration_for_Interactive_Image_Retrieval_CVPRW_2023_paper.pdf)
+# Coarse-to-fine sparse self-attention for vehicle re-identification - Accepted at Knowledge-Based Systems, 2023
+- The paper can be accessed at [KBS2023](https://www.sciencedirect.com/science/article/abs/pii/S0950705123002769)
 
 
 If you find this code useful in your research then please cite
 
 
 '''
-@inproceedings{LGLI2023,
+@article{huang2023coarse,
 
-    author    = {Huang, Fuxiang and Zhang, Lei},
-	
-    title     = {Language Guided Local Infiltration for Interactive Image Retrieval},
-	
-    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
-	
-    year      = {2023},
+  title={Coarse-to-fine sparse self-attention for vehicle re-identification},
+  
+  author={Huang, Fuxiang and Lv, Xuefeng and Zhang, Lei},
+  
+  journal={Knowledge-Based Systems},
+  
+  volume={270},
+  
+  pages={110526},
+  
+  year={2023},
+  
+  publisher={Elsevier}
 }
 '''
 
 
 ## Abstract
 
-Interactive Image Retrieval (IIR) aims to retrieve imagesthat are generally similar to the reference image but under the requested text modification. The existing methodsusually concatenate or sum the features of image and textsimply and roughly, which, however, is difficult to preciselychange the local semantics of the image that the text intends to modify. To solve this problem, we propose a LanguageGuided Local Infiltration (LGLI) system, which fully utilizesthe text information and penetrates text features into imagefeatures as much as possible. Specifically, we first proposea Language Prompt Visual Localization (LPVL) module togenerate a localization mask which explicitly locates the region (semantics) intended to be modified. Then we introduce a Text Infiltration with Local Awareness (TILA) module, which is deployed in the network to precisely modifythe reference image and generate image-text infiltrated representation. Extensive experiments on various benchmarkdatabases validate that our method outperforms most stateof-the-art IIR approaches.
-
-## Requirements and Installation
-* Python 3.6
-* [PyTorch](http://pytorch.org/) 1.2.0
-* [NumPy](http://www.numpy.org/) (1.16.4)
-* [TensorBoard](https://github.com/TeamHG-Memex/tensorboard_logger)
-
-## Description of the Code [(From TIRG)](https://github.com/google/tirg/edit/master/README.md)
-The code is based on TIRG code. 
-
-
-- `main.py`: driver script to run training/testing
-- `datasets.py`: Dataset classes for loading images & generate training retrieval queries
-- `text_model.py`: LSTM model to extract text features
-- `img_text_composition_models.py`: various image text compostion models 
-- `torch_function.py`: contains soft triplet loss function and feature normalization function
-- `test_retrieval.py`: functions to perform retrieval test and compute recall performance
-
-## Running the experiments 
-
-### Download the datasets
-
-### CSS3D dataset
-
-Download the dataset from this [external website](https://drive.google.com/file/d/1wPqMw-HKmXUG2qTgYBiTNUnjz83hA2tY/view?usp=sharing).
-
-Make sure the dataset include these files:
-`<dataset_path>/css_toy_dataset_novel2_small.dup.npy`
-`<dataset_path>/images/*.png`
-
-#### MITStates dataset
-
-Download the dataset via this [link](http://web.mit.edu/phillipi/Public/states_and_transformations/index.html) and save it in the ``data`` folder. Kindly take care that the dataset should have these files:
-
-```data/mitstates/images/<adj noun>/*.jpg```
-
-
-#### Fashion200k dataset
-
-Download the dataset via this [link](https://github.com/xthan/fashion-200k) and save it in the ``data`` folder.
-To ensure fair comparison, we employ the same test queries as TIRG. They can be downloaded from [here](https://storage.googleapis.com/image_retrieval_css/test_queries.txt). Kindly take care that the dataset should have these files:
-
-```
-data/fashion200k/labels/*.txt
-data/fashion200k/women/<category>/<caption>/<id>/*.jpeg
-data/fashion200k/test_queries.txt`
-```
-
-
-
-## Running the Code
-
-For training and testing new models, pass the appropriate arguments. 
-
-For instance, for training LGLI model on Fashion200k dataset run the following command:
-
-```
-python   main.py --dataset=fashion200k --dataset_path=../data/fashion200k/  --model=LGLI --loss=batch_based_classification --learning_rate_decay_frequency=50000 --num_iters=160000 --use_complete_text_query True  
-```
-
-
+Existing vehicle re-identification (Re-ID) methods usually combine global features and local features to meet the challenge of inter-class similarity and intra-class variance, but almost all existing methods rely on extra auxiliary networks to locate the vehicle parts for feature mining, which are inefficient, cost-ineffective and time-consuming. Self-attention mechanism, averaging model’s attention weights on the similar vehicle parts, can guide the model to identify more discriminative vehicle parts for identification, thus extracting expensive local features becomes unnecessary. However, the computational cost of the original self-attention mechanism is unacceptable and the attention map is less discriminative when processing high-resolution feature maps (i.e. 384*384 or larger), which limits the performance gains of the challenging vehicle Re-ID. In this paper, we propose a lightweight coarse-to-fine sparse self-attention mechanism for vehicle Re-ID. Our method decomposes the self-attention process to a coarse stage and a fine stage. In coarse stage, the pixel-level feature map is transformed to patch-level feature map and the dependencies between similar vehicle parts are captured in a global context. In fine stage, the details of vehicle parts are captured in a local context. In addition, multi-head structure is introduced to capture diverse but robust attention information. Experiments on VeRi and VERI-Wild show that our method not only outperforms recent vehicle Re-ID methods relying on expensive auxiliary networks, but also outperforms the original self-attention mechanism in accuracy with much lower computation and memory cost.
 
 
 
