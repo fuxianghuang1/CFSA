@@ -1,28 +1,22 @@
 # Coarse-to-fine sparse self-attention for vehicle re-identification - Accepted at Knowledge-Based Systems, 2023
+
 - The paper can be accessed at [KBS2023](https://www.sciencedirect.com/science/article/abs/pii/S0950705123002769)
 
 
 If you find this code useful in your research then please cite
 
 
-'''
+```bibtex
 @article{huang2023coarse,
-
   title={Coarse-to-fine sparse self-attention for vehicle re-identification},
-  
-  author={Huang, Fuxiang and Lv, Xuefeng and Zhang, Lei},
-  
+  author={Huang, Fuxiang and Lv, Xuefeng and Zhang, Lei},  
   journal={Knowledge-Based Systems},
-  
   volume={270},
-  
   pages={110526},
-  
   year={2023},
-  
   publisher={Elsevier}
 }
-'''
+```
 
 
 ## Abstract
